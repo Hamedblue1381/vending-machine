@@ -1,4 +1,4 @@
 app:
-	@go build -o bin/cli/vending-machine
-	@./bin/cli/vending-machine
+	@go build -o bin/vending-machine
+	@./bin/vending-machine
 .PHONY: app
