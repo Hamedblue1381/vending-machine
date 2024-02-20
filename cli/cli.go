@@ -7,13 +7,18 @@ func (c *CliService) InsertCoin() error {
 	if err != nil {
 		return err
 	}
-	c.ShowItems()
+	err = c.ShowItems()
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
 func (c *CliService) ShowItems() error {
 	fmt.Printf("Choose from items: \n%+v \n", c.vendingMachine.Items)
-	c.ChooseItem()
+	if err := c.ChooseItem(); err != nil {
+		return err
+	}
 	return nil
 }
 func (c *CliService) ChooseItem() error {
@@ -22,7 +27,9 @@ func (c *CliService) ChooseItem() error {
 	if err := c.vendingMachine.ChooseItem(id); err != nil {
 		return err
 	}
-	c.DispenseItem(id)
+	if err := c.DispenseItem(id); err != nil {
+		return err
+	}
 	return nil
 }
 func (c *CliService) DispenseItem(id int) error {

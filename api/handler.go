@@ -83,6 +83,10 @@ func (v *VendingMachineHandle) GetVendingMachines(w http.ResponseWriter, r *http
 func (v *VendingMachineHandle) ChooseItem(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	itemIDStr := vars["id"]
+	if itemIDStr == "" {
+		http.Error(w, "Item ID is missing or empty", http.StatusBadRequest)
+		return
+	}
 	itemID, err := strconv.Atoi(itemIDStr)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
