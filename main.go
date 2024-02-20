@@ -14,6 +14,7 @@ import (
 var (
 	vendingMachines []state.VendingMachine
 	mutex           sync.Mutex
+	cliiEnabled     string = os.Getenv("CLI_ENABLED")
 )
 
 func main() {
@@ -23,10 +24,12 @@ func main() {
 	h := api.NewVendingMachineHandler(v, vendingMachines, updateChan, &mutex)
 	apiService := api.NewApiService()
 
-	cliService := cli.NewCliService(v, vendingMachines, &mutex, updateChan)
+	if cliiEnabled != "" && cliiEnabled == "true" {
+		cliService := cli.NewCliService(v, vendingMachines, &mutex, updateChan)
+		go cliService.Start()
+	}
 
 	go apiService.Start(h)
-	go cliService.Start()
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
 	<-interrupt
