@@ -1,0 +1,49 @@
+<!doctype html> 
+  <html> 
+    <head> 
+      <title>Serving static files using go</title> 
+      <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    </head> 
+    <body> 
+      <section id="item">
+        <h2>Item</h2>
+        <div>
+          <input type="text" id="itemInput" placeholder="Enter item ID">
+          <button hx-get="http://localhost:8080/item/{item}" hx-target="#itemContent" hx-swap="outerHTML" hx-trigger="click" hx-indicator="on">
+            Get Item
+          </button>
+        </div>
+        <div id="itemContent"></div>
+      </section>
+  
+      <!-- Insert Component -->
+      <section id="insert">
+        <h2>Insert</h2>
+        <ul id="insertContent"></ul>
+        <button hx-get="http://localhost:8080/insert" hx-target="#insertContent" hx-swap="innerHTML" hx-trigger="click" hx-indicator="on">
+          Get Insert
+        </button>
+      </section>
+  
+      <!-- Machines List Component -->
+      <section id="machinesList">
+        <h2>Machines</h2>
+        <ul id="machinesListContent"></ul>
+        <button hx-get="http://localhost:8080/machines" hx-target="#machinesListContent" hx-swap="innerHTML" hx-trigger="click" hx-indicator="on">
+          Get Machines
+        </button>
+      </section>
+  
+      <!-- Add Machine Component -->
+      <section id="addMachine">
+        <h2>Add Machine</h2>
+        <div>
+          <input type="number" id="addMachineInput" placeholder="Enter count">
+          <button hx-post="http://localhost:8080/add-machine" hx-target="#addMachineContent" hx-swap="outerHTML" hx-trigger="click" hx-indicator="on">
+            Add Machine
+          </button>
+        </div>
+        <div id="addMachineContent"></div>
+      </section>
+    </body> 
+</html>
