@@ -13,6 +13,18 @@ func (i *ItemRequestState) InsertCoin() error {
 }
 
 func (i *ItemRequestState) ChooseItem(id int) error {
+	itemExists := false
+	for _, item := range i.vendingMachine.Items {
+		if item.ID == id {
+			itemExists = true
+			break
+		}
+	}
+
+	if !itemExists {
+		return fmt.Errorf("item with ID %d does not exist", id)
+	}
+
 	if i.vendingMachine.Stock > 0 {
 		i.vendingMachine.SetState(i.vendingMachine.Dispensing)
 		return nil
