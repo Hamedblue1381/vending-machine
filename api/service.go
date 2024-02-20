@@ -19,11 +19,13 @@ func NewApiService() *ApiService {
 }
 func (a *ApiService) Start(h VendingMachineHandler) {
 
+	a.router.Handle("/", http.FileServer(http.Dir("./public/views")))
 	a.router.HandleFunc("/item/{id}", h.ChooseItem).Methods("GET")
 
 	a.router.HandleFunc("/add-machine", h.CreateVendingMachine).Methods("POST")
 	a.router.HandleFunc("/machines", h.GetVendingMachines).Methods("GET")
 	a.router.HandleFunc("/insert", h.InsertCoin).Methods("GET")
+
 	log.Println("Running on port 8080..")
 	http.ListenAndServe(":8080", a.router)
 
