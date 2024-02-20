@@ -1,6 +1,4 @@
-# My Amazing Web App
-
-Welcome to our amazing web application! This repository contains all necessary files and documentation to get started with ease.
+# Vending Machine Service
 
 ## Table of Contents
 - [Getting Started](#getting-started)
