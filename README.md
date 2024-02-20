@@ -25,15 +25,15 @@
 
 #### Web Application Setup
 
-        ```bash
+  ```bash
         make build
-        ```
+  ```
 
 #### Cli
 
-        ```bash
+  ```bash
         make cli
-        ```
+  ``` 
 
 
 
