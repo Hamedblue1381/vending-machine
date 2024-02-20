@@ -20,7 +20,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone [https://github.com/Hamedblue1381/vending-machine.git]
+   git clone https://github.com/Hamedblue1381/vending-machine.git
    cd vending-machine
 
 #### Web Application Setup
