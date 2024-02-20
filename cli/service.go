@@ -34,7 +34,7 @@ func NewCliService(v *state.VendingMachine, vendingMachines []state.VendingMachi
 }
 
 func (c *CliService) Start() {
-	fmt.Println("Vending machine started. Type 'coin' to insert a coin.")
+	fmt.Println("Type 'run' to start the machine.")
 
 	scanner := bufio.NewScanner(os.Stdin)
 	go func() {
@@ -73,5 +73,6 @@ func (s *CliService) Run() {
 	s.vendingMachines = append(s.vendingMachines, *vmachine)
 
 	s.updateChan <- s.vendingMachines
+	fmt.Println("Vending machine started. Type 'coin' to insert a coin.")
 
 }
